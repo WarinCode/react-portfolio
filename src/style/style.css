@@ -1,0 +1,72 @@
+:root {
+  --primary: #111111;
+  --secondary: #f0f0f0;
+  --tertiary: #c4c4c4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--primary);
+}
+
+.nav-link {
+  transition: color 200ms ease-in-out;
+  &:hover {
+    color: var(--secondary);
+  }
+}
+
+nav div img[alt="react-logo"] {
+  animation: spin 25000ms infinite;
+}
+
+@keyframes spin {
+  from {
+    rotate: 0;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+.skill:hover {
+  > img {
+    scale: 1.1;
+  }
+  > p {
+    color: var(--secondary);
+  }
+}
+
+#scroll-to-top:hover > *,
+#scroll-to-top:active > * {
+  color: var(--secondary);
+}
+
+
+/* https://10015.io/tools/css-loader-generator */
+.spinner {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(#0000 10%,#f0f0f0);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 17px),#000 0);
+  animation: spinner-zp9dbg 1s infinite linear;
+  margin: 17% auto 0;
+}
+
+@keyframes spinner-zp9dbg {
+  to {
+     transform: rotate(1turn);
+  }
+}
