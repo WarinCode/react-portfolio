@@ -93,13 +93,6 @@
       "courseName": "Software Construction",
       "grade": "A",
       "credit": 3
-    },
-    {
-      "id": "8",
-      "code": "01418231",
-      "courseName": "Data Structures and Algorithms",
-      "grade": "A",
-      "credit": 3
     }
   ]
 }

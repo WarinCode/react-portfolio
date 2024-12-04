@@ -4,7 +4,7 @@ import { ButtonProps } from "../types/propTypes";
 const baseStyled: string =
   "w-56 h-14 bg-primary border-2 border-tertiary rounded-md text-tertiary p-4 delay-200 transition ease-linear hover:text-black hover:border-transparent hover:bg-secondary select-none shadow-md hover:shadow-tertiary hover:scale-95";
 
-const Button: FC<ButtonProps<HTMLButtonElement>> = ({
+const Button: FC<ButtonProps> = ({
   attributes,
   text,
   icon,

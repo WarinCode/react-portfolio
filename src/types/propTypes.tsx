@@ -7,7 +7,6 @@ import {
   InputHTMLAttributes,
   SelectHTMLAttributes,
   LegacyRef,
-  MouseEvent,
 } from "react";
 import Modal from "react-modal";
 import SchoolModel from "./models/school";
@@ -44,7 +43,7 @@ export interface TitleProps extends TitleObject {}
 export interface LineProps<T extends HTMLDivElement = HTMLDivElement>
   extends Attributes<T> {}
 
-export interface ButtonProps<T extends HTMLButtonElement>
+export interface ButtonProps<T extends HTMLButtonElement = HTMLButtonElement>
   extends Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick"> {
   attributes?: ButtonHTMLAttributes<T>;
   text: string;

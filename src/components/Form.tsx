@@ -16,7 +16,7 @@ import { CourseContextType } from "../types";
 import Button from "./Button";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
-import CourseModel from "../types/models/course";
+import CourseModel, { Courses } from "../types/models/course";
 import { FormProps } from "../types/propTypes";
 import { grades, credits, toastOptions } from "../constants";
 import { getLocalhost } from "../utils";
@@ -27,7 +27,7 @@ const Form: FC<FormProps> = ({
   id,
   closeModal,
 }): ReactElement => {
-  const { courses, handleFetch } = useContext(
+  const { courses, setCourses, handleFetch } = useContext(
     CourseContext
   ) as CourseContextType;
   const courseName = useRef() as MutableRefObject<HTMLInputElement>;
@@ -105,6 +105,22 @@ const Form: FC<FormProps> = ({
         code.current.focus();
         throw new Error("รหัสวิชาต้องเป็นตัวเลขเท่านั้น!");
       }
+    }
+
+    let isError: boolean = false;
+    setCourses((prevCourses: Courses): Courses => {
+      isError = prevCourses.some(
+        (course: CourseModel) =>
+          course.code === getCurrentValue(code) ||
+          course.courseName === getCurrentValue(courseName)
+      );
+
+      return prevCourses;
+    });
+
+    if (isError) {
+      clear();
+      throw new Error("ไม่สามารถเพิ่มชื่อวิชาหรือรหัสวิชาที่ซ้ำกันได้!");
     }
   }, []);
 
@@ -204,7 +220,7 @@ const Form: FC<FormProps> = ({
     >
       <InputField
         labelName="ชื่อวิชา"
-        attributes={{ id: "courseName", type: "text" }}
+        attributes={{ id: "courseName", type: "text", minLength: 4, maxLength: 50 }}
         referent={courseName}
       />
       <InputField
