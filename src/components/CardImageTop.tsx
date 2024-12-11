@@ -15,7 +15,7 @@ const CardImageTop: FC<CardImageTopProps> = ({
         src={src}
         alt={alt}
         loading="lazy"
-        className="w-full h-[230px] bg-cover rounded-md transition delay-200 ease-linear hover:scale-150 max-[360px]:h-[150px]"
+        className="w-full h-[230px] bg-cover rounded-md transition delay-200 ease-linear hover:scale-150 max-[450px]:h-[170px] max-[360px]:h-[150px]"
       />
     </div>
   );

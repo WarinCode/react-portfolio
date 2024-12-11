@@ -43,7 +43,7 @@ const Graduation = (): ReactElement => {
           ปัจจุบัน
         </p>
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 place-items-center gap-y-16 gap-x-4 mt-12 max-[360px]:grid-cols-1 max-[360px]:grid-flow-row max-[360px]:gap-y-8">
+      <div className="grid grid-cols-2 grid-rows-2 place-items-center gap-y-16 gap-x-4 mt-12 max-[450px]:grid-cols-1 max-[450px]:grid-flow-row max-[450px]:gap-y-8 max-[360px]:grid-cols-1 max-[360px]:grid-flow-row max-[360px]:gap-y-8">
         {schools.map(
           (school: SchoolModel): ReactElement => (
             <Card key={uuid()} cardType="school" data={school} />

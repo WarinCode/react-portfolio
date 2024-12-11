@@ -10,7 +10,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ isOpen }): ReactElement => {
     <ul
       className={`opacity-0 ${
         isOpen
-          ? "opacity-100 max-[360px]:flex max-[360px]:flex-col max-[360px]:items-start"
+          ? "opacity-100 max-[450px]:flex max-[450px]:flex-col max-[450px]:items-start max-[360px]:flex max-[360px]:flex-col max-[360px]:items-start"
           : ""
       } w-full cursor-pointer transition-[opacity] delay-100 ease-linear mt-4`}
     >

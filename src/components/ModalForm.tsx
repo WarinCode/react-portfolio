@@ -16,7 +16,7 @@ const ModalForm: FC<ModalFormProps> = ({
     <Modal {...modal}>
       <div className="relative">
         <IoCloseOutline
-          className="text-3xl text-tertiary text-end cursor-pointer absolute top-0 right-0"
+          className="text-3xl max-[450px]:text-xl max-[360px]:text-xl text-tertiary text-end cursor-pointer absolute top-0 right-0"
           onClick={modal.onRequestClose}
         />
       </div>

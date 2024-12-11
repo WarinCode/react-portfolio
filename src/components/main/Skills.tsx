@@ -18,7 +18,7 @@ const Skills = (): ReactElement => {
           ทั้งหมดที่ใช้งานเป็น
         </p>
       </div>
-      <div className="grid grid-cols-6 grid-flow-row place-items-center mt-10 gap-y-6 max-[360px]:grid-cols-3 max-[360px]:gap-y-10 max-[360px]:gap-x-6">
+      <div className="grid grid-cols-6 grid-flow-row place-items-center mt-10 gap-y-6 max-[450px]:grid-cols-3 max-[450px]:gap-y-10 max-[450px]:gap-x-6 max-[360px]:grid-cols-3 max-[360px]:gap-y-10 max-[360px]:gap-x-6">
         {skills.map(
           (skill: Skill): ReactElement => (
             <SkillItem key={uuid()} {...skill} />

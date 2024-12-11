@@ -17,12 +17,15 @@ const Contact = (): ReactElement => {
           ช่องทางการติดต่อทั้งหมดของเรา
         </p>
       </div>
-      <div className="flex flex-wrap items-center justify-between max-[360px]:flex-col">
+      <div className="flex flex-wrap items-center justify-between max-[450px]:flex-col max-[360px]:flex-col">
         {contactButtons.map((btn: ButtonProps<HTMLButtonElement>) => (
           <Button
             key={uuid()}
             {...btn}
-            attributes={{ className: "max-[360px]:mb-6 max-[360px]:w-full" }}
+            attributes={{
+              className:
+                "max-[450px]:w-full max-[450px]:mb-6 max-[360px]:w-full max-[360px]:mb-6",
+            }}
           />
         ))}
       </div>

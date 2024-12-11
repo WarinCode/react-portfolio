@@ -100,7 +100,7 @@ export interface SelectFieldProps<
   T extends HTMLSelectElement = HTMLSelectElement
 > extends Omit<InputFieldProps<T>, "attributes"> {
   attributes?: SelectHTMLAttributes<T>;
-  optionList: string[] | number[];
+  optionList: Array<string | number>;
 }
 
 export interface ModalFormProps {
