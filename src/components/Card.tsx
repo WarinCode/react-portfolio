@@ -24,22 +24,27 @@ const Card: FC<CardProps<HTMLDivElement>> = ({
       <CardContainer
         attributes={{
           ...attributes,
-          className: `${attributes?.className} bg-primary w-[450px] h-[420px] overflow-hidden`,
+          className: `${attributes?.className} bg-primary w-[450px] h-[420px] overflow-hidden max-[360px]:w-full max-[360px]:h-max`,
         }}
       >
         <CardImageTop src={img} alt={schoolName} />
         <CardBody>
           <CardHeader>
-            <CardTitle title={schoolName} />
-            <span className="absolute right-4 text-secondary flex">
+            <CardTitle
+              title={schoolName}
+              attributes={{ className: "text-base" }}
+            />
+            <span className="absolute right-4 text-secondary flex max-[360px]:relative max-[360px]:right-0 max-[360px]:mt-4 max-[360px]:mb-4">
               <CardLink
                 attributes={{ href: location }}
-                icon={<IoLocationSharp className="text-xl cursor-pointer" />}
+                icon={
+                  <IoLocationSharp className="text-xl cursor-pointer max-[360px]:text-lg" />
+                }
               />
               <CardLink
                 attributes={{ href: facebookLink, className: "ms-4" }}
                 icon={
-                  <IoLink className="text-xl cursor-pointer rotate-[315deg]" />
+                  <IoLink className="text-xl cursor-pointer rotate-[315deg] max-[360px]:text-lg" />
                 }
               />
             </span>
@@ -67,22 +72,27 @@ const Card: FC<CardProps<HTMLDivElement>> = ({
     <CardContainer
       attributes={{
         ...attributes,
-        className: `${attributes?.className} bg-primary w-[450px] h-[420px] overflow-hidden`,
+        className: `${attributes?.className} bg-primary w-[450px] h-[420px] overflow-hidden max-[360px]:w-full max-[360px]:w-full max-[360px]:h-max`,
       }}
     >
       <CardImageTop src={img} alt={universityName} />
       <CardBody>
         <CardHeader>
-          <CardTitle title={universityName} />
-          <span className="absolute right-4 text-secondary flex">
+          <CardTitle
+            title={universityName}
+            attributes={{ className: "text-base" }}
+          />
+          <span className="absolute right-4 text-secondary flex max-[360px]:relative max-[360px]:right-0 max-[360px]:mt-4 max-[360px]:mb-4">
             <CardLink
               attributes={{ href: location }}
-              icon={<IoLocationSharp className="text-xl cursor-pointer" />}
+              icon={
+                <IoLocationSharp className="text-xl cursor-pointer max-[360px]:text-lg" />
+              }
             />
             <CardLink
               attributes={{ href: facebookLink, className: "ms-4" }}
               icon={
-                <IoLink className="text-xl cursor-pointer rotate-[315deg]" />
+                <IoLink className="text-xl cursor-pointer rotate-[315deg] max-[360px]:text-lg" />
               }
             />
           </span>

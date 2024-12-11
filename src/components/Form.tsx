@@ -238,7 +238,7 @@ const Form: FC<FormProps> = ({
     <FormContainer
       attributes={{
         className:
-          "mt-8 grid grid-cols-2 grid-rows-3 place-items-center text-tertiary font-k2d gap-y-12",
+          "mt-8 grid grid-cols-2 grid-rows-3 place-items-center text-tertiary font-k2d gap-y-12 max-[360px]:grid-cols-1 max-[360px]:grid-flow-row max-[360px]:items-start",
         onSubmit: mode === "add" ? handleSubmit : handleEdit,
       }}
     >

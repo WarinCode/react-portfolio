@@ -16,8 +16,8 @@ const About = (): ReactElement => {
     <Container
       attributes={{ className: "text-tertiary h-max mb-12 pt-12", id: "about" }}
     >
-      <div className="flex items-start justify-between">
-        <div className="pt-12 w-1/2">
+      <div className="flex items-start justify-between max-[360px]:flex-col-reverse max-[360px]:items-center">
+        <div className="pt-12 w-1/2 max-[360px]:w-full max-[360px]:pt-12">
           <Title title="About" />
           <p className="font-k2d leading-8 w-full text-wrap">
             สวัสดีเราชื่อ {user?.fullname} รหัสนิสิต {user?.studentId}{" "}
@@ -27,34 +27,37 @@ const About = (): ReactElement => {
             Developer
           </p>
           <p className="my-2 font-k2d">ช่องทางการติดต่อหลัก: </p>
-          <div className="flex w-full items-center justify-start mt-8">
+          <div className="flex w-full items-center justify-start mt-8 max-[360px]:flex-col">
             {contactButtons.slice(1, 3).map(
               (btn: ButtonProps<HTMLButtonElement>): ReactElement => (
                 <Button
                   key={uuid()}
                   {...btn}
-                  attributes={{ className: "my-2 me-4" }}
+                  attributes={{
+                    className: "my-2 me-4 max-[360px]:w-full max-[360px]:mb-4",
+                  }}
                 />
               )
             )}
           </div>
         </div>
-        <div className="relative w-1/2">
+        <div className="relative w-1/2 max-[360px]:w-full">
           <img
             src="/assets/imgs/profile.jpg"
             alt="user-img"
-            className="w-[270px] h-[380px] z-10 border-8 border-transparent mx-auto"
+            className="w-[270px] h-[380px] z-10 border-8 border-transparent mx-auto max-[360px]:w-max"
             loading="lazy"
           />
           <BackgroundLayer
             attributes={{
               className:
-                "z-[-1] bg-zinc-900 opacity-40 top-6 right-28 border-8 border-transparent",
+                "z-[-1] bg-zinc-900 opacity-40 top-6 right-28 border-8 border-transparent max-[360px]:hidden",
             }}
           />
           <BackgroundLayer
             attributes={{
-              className: "z-[-2] bg-zinc-900 opacity-20 top-12 right-20",
+              className:
+                "z-[-2] bg-zinc-900 opacity-20 top-12 right-20 max-[360px]:hidden",
             }}
           />
         </div>

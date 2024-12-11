@@ -114,3 +114,7 @@ export interface FormProps extends Pick<ModalFormProps, "course" | "id"> {
   mode: "add" | "edit";
   closeModal?: () => void;
 }
+
+export interface MobileMenuProps {
+  isOpen: boolean;
+}

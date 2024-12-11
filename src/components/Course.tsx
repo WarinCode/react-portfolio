@@ -97,9 +97,9 @@ const Course: FC<CourseProps> = ({
           className="w-full cursor-pointer text-lg translate-y-2 flex items-center justify-between"
           onClick={handleClick}
         >
-          <p>{courseName}</p>
+          <p className="max-[360px]:text-base">{courseName}</p>
           <IoIosArrowUp
-            className={`text-xl transition delay-100 ease-linear ${
+            className={`text-xl transition delay-100 ease-linear max-[360px]:text-base ${
               open ? "rotate-0" : "rotate-180"
             }`}
           />
@@ -109,7 +109,7 @@ const Course: FC<CourseProps> = ({
             open ? " h-[80px] opacity-100" : "h-0 opacity-0 "
           }`}
         >
-          <Line attributes={{ className: "mt-8 mb-6" }} />
+          <Line attributes={{ className: "mt-8 mb-6 max-[360px]:mt-6 max-[360px]:mb-6" }} />
           <p className="text-sm">รหัสวิชา: {code}</p>
           <p className="text-sm my-2">
             เกรด: <span className="font-bold">{grade}</span>

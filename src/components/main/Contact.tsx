@@ -13,11 +13,17 @@ const Contact = (): ReactElement => {
       <Line />
       <Title title="Contact" />
       <div className="mb-8">
-        <p className="font-k2d">ช่องทางการติดต่อทั้งหมดของเรา</p>
+        <p className="font-k2d max-[360px]:mb-2">
+          ช่องทางการติดต่อทั้งหมดของเรา
+        </p>
       </div>
-      <div className="flex flex-wrap items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between max-[360px]:flex-col">
         {contactButtons.map((btn: ButtonProps<HTMLButtonElement>) => (
-          <Button key={uuid()} {...btn} />
+          <Button
+            key={uuid()}
+            {...btn}
+            attributes={{ className: "max-[360px]:mb-6 max-[360px]:w-full" }}
+          />
         ))}
       </div>
     </Container>

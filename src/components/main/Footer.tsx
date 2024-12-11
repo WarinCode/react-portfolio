@@ -10,7 +10,7 @@ const Footer = (): ReactElement => {
 
   return (
     <Container attributes={{ className: "my-8" }}>
-      <Line attributes={{ className: "mt-24 mb-8" }} />
+      <Line attributes={{ className: "mt-24 mb-8 max-[360px]:mb-12 max-[360px]:mt-12" }} />
       <footer className="font-k2d text-tertiary text-center text-sm">
         @Copyright {year} | เขียนโค้ด และ ออกแบบโดย นาย {user?.fullname}
       </footer>

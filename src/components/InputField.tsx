@@ -8,7 +8,7 @@ const InputField: FC<InputFieldProps> = ({
   referent,
 }): ReactElement => {
   return (
-    <InputWrapper>
+    <InputWrapper attributes={{ className: "max-[360px]:w-full" }}>
       <label htmlFor={attributes?.id} className="block mb-4 text-xl">
         {labelName}
       </label>

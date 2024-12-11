@@ -8,7 +8,7 @@ const CardHeader: FC<CardHeaderProps> = ({
   return (
     <header
       {...attributes}
-      className={`flex items-center relative ${attributes?.className}`}
+      className={`flex items-center relative ${attributes?.className} max-[360px]:flex-col max-[360px]:items-start`}
     >
       {children}
     </header>
