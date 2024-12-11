@@ -238,7 +238,7 @@ const Form: FC<FormProps> = ({
     <FormContainer
       attributes={{
         className:
-          "mt-8 grid grid-cols-2 grid-rows-3 place-items-center text-tertiary font-k2d gap-y-12 max-[360px]:grid-cols-1 max-[360px]:grid-flow-row max-[360px]:items-start",
+          "mt-8 grid grid-cols-2 grid-rows-3 place-items-center text-tertiary font-k2d gap-y-12 max-[360px]:flex max-[360px]:flex-col",
         onSubmit: mode === "add" ? handleSubmit : handleEdit,
       }}
     >
@@ -275,7 +275,10 @@ const Form: FC<FormProps> = ({
         referent={credit}
       />
       <Button
-        attributes={{ className: "col-span-2 mt-4 w-[250px]", type: "submit" }}
+        attributes={{
+          className: "col-span-2 mt-4 w-[250px] max-[360px]:w-full",
+          type: "submit",
+        }}
         text={mode === "add" ? "บันทึก" : "แก้ไข"}
         buttonType={"normal"}
       />

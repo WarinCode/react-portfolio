@@ -16,8 +16,8 @@ const Navbar = (): ReactElement => {
 
   return (
     <nav
-      className={`flex flex-col p-6 w-full sticky top-0 h-20 z-50 px-28 backdrop-blur-lg max-[360px]:justify-between max-[360px]:-top-1 max-[360px]:px-12 transition-all ease-linear delay-150 ${
-        isOpen ? "h-max" : "h-20"
+      className={`flex flex-col p-6 w-full sticky -top-1 h-20 z-50 px-28 backdrop-blur-lg max-[360px]:justify-between max-[360px]:px-12 transition-[height] ease-linear delay-100 ${
+        isOpen ? "h-64" : "h-20"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -32,7 +32,7 @@ const Navbar = (): ReactElement => {
           </h4>
         </div>
         <div
-          className="cursor-pointer max-[360px]:w-auto"
+          className="hidden cursor-pointer max-[360px]:block max-[360px]:w-auto"
           onClick={handleClick}
         >
           {isOpen ? (

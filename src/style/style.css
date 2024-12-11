@@ -20,7 +20,7 @@ body {
 }
 
 .nav-link {
-  transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out, transform 200ms ease-in-out;
   &:hover {
     color: var(--secondary);
   }
