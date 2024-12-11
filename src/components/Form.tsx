@@ -71,7 +71,7 @@ const Form: FC<FormProps> = ({
     setCurrentValue(credit, 3);
   };
 
-  const formValidation = useCallback((): void => {
+  const formValidation = useCallback((id?: string): void => {
     if (getCurrentValue(courseName).length === 0) {
       setCurrentValue(courseName, "");
       courseName.current.focus();
@@ -109,11 +109,22 @@ const Form: FC<FormProps> = ({
 
     let isError: boolean = false;
     setCourses((prevCourses: Courses): Courses => {
-      isError = prevCourses.some(
-        (course: CourseModel) =>
-          course.code === getCurrentValue(code) ||
-          course.courseName === getCurrentValue(courseName)
-      );
+      if (id === undefined) {
+        isError = prevCourses.some(
+          (course: CourseModel): boolean =>
+            course.code === getCurrentValue(code) ||
+            course.courseName === getCurrentValue(courseName)
+        );
+      } else {
+        const filterdCourses: Courses = prevCourses.filter(
+          (course: CourseModel): boolean => course.id !== id
+        );
+        isError = filterdCourses.some(
+          (course: CourseModel) =>
+            course.code === getCurrentValue(code) ||
+            course.courseName === getCurrentValue(courseName)
+        );
+      }
 
       return prevCourses;
     });
@@ -124,12 +135,25 @@ const Form: FC<FormProps> = ({
     }
   }, []);
 
+  const getId = (): string => {
+    let id: string = "";
+    setCourses((prevCourses: Courses) => {
+      id =
+        prevCourses.length === 0
+          ? "1"
+          : String(parseInt(prevCourses[prevCourses.length - 1].id) + 1);
+      return prevCourses;
+    });
+
+    return id;
+  };
+
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
 
       const payload: CourseModel = {
-        id: courses.length === 0 ? "1" : String(courses.length + 1),
+        id: getId(),
         courseName: getCurrentValue(courseName),
         code: getCurrentValue(code),
         grade: getCurrentValue(grade),
@@ -174,7 +198,7 @@ const Form: FC<FormProps> = ({
       };
 
       try {
-        formValidation();
+        formValidation(id);
 
         const { status }: AxiosResponse<CourseModel> =
           await axios.put<CourseModel>(
@@ -220,7 +244,12 @@ const Form: FC<FormProps> = ({
     >
       <InputField
         labelName="ชื่อวิชา"
-        attributes={{ id: "courseName", type: "text", minLength: 4, maxLength: 50 }}
+        attributes={{
+          id: "courseName",
+          type: "text",
+          minLength: 4,
+          maxLength: 50,
+        }}
         referent={courseName}
       />
       <InputField

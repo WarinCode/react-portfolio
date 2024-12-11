@@ -44,7 +44,13 @@ const AcademicResults = (): ReactElement => {
         <Form mode="add" />
         <Line attributes={{ className: "my-24" }} />
         <div>
-          <p className="font-k2d mb-12">แสดงผลการเรียนทั้งหมด</p>
+          {courses.length === 0 ? (
+            <p className="font-k2d mb-12 text-center">
+              ยังไม่มีรายวิชาที่นำมาแสดงในตอนนี้โปรดเพิ่มรายวิชาก่อน
+            </p>
+          ) : (
+            <p className="font-k2d mb-12">แสดงผลการเรียนทั้งหมด</p>
+          )}
           <Courses />
         </div>
       </Container>

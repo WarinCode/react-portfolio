@@ -4,7 +4,6 @@ export default interface UniversityModel {
     major: string;
     period: string;
     img: string;
-    logo: string;
     facebookLink: string;
     location: string;
 }

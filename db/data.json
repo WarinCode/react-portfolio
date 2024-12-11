@@ -15,8 +15,7 @@
       "schoolName": "โรงเรียนเมืองพัทยา 5",
       "studyPlan": "-",
       "period": "อ.1 - อ.3",
-      "img": "https://scontent.fbkk22-4.fna.fbcdn.net/v/t39.30808-6/314329690_564082088856983_3436000969958001644_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeG_ySAiapo7IWGYj2-HvjRrINaLbSZ6Nt4g1ottJno23v8dt8qV3goaakajFcP7Zh7YolJL_tqRGeXa7IYCJCZP&_nc_ohc=dXxcSriec-4Q7kNvgF-nflB&_nc_zt=23&_nc_ht=scontent.fbkk22-4.fna&_nc_gid=AbG--hgSRFkh8nzNs-LtJ8P&oh=00_AYBM6oYXjeGnsUP_nGC74K0Ocw1lYw9l7srXYjk2lcePvA&oe=67512038",
-      "logo": "/assets/imgs/school5.png",
+      "img": "/assets/imgs/school5.jpg",
       "facebookLink": "https://web.facebook.com/pattayacity5school/?locale=th_TH&_rdc=1&_rdr",
       "location": "https://maps.app.goo.gl/U6VmnKeAtdUtLZKu5"
     },
@@ -25,8 +24,7 @@
       "schoolName": "โรงเรียนเมืองพัทยา 9 วัดโพธิสัมพันธ์",
       "studyPlan": "วิทย์คณิต",
       "period": "ป.1 - ม.3",
-      "img": "https://scontent.fbkk22-4.fna.fbcdn.net/v/t39.30808-6/240602424_4342165789160260_35981721297864338_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeG3yXwLYa-LRyyAAqbPMPLyHloEukPOzo0eWgS6Q87OjUlM02dkjv6OBdWCt4BeE12e-8uBLbygMXjFpSpSsLun&_nc_ohc=HaBCjQe1umoQ7kNvgFgLZPi&_nc_zt=23&_nc_ht=scontent.fbkk22-4.fna&_nc_gid=A_8PT6kA4lpzKQeYxeHvWx0&oh=00_AYDJxUxzwnMBYf-r5NOe4R6yyjsFAAlCgANz-z3jbZwIXA&oe=6751F294",
-      "logo": "/assets/imgs/school9.png",
+      "img": "/assets/imgs/school9.jpg",
       "facebookLink": "https://web.facebook.com/Pattayacitynine?locale=th_TH",
       "location": "https://maps.app.goo.gl/TR1FJSARGmSYpL6v6"
     },
@@ -35,8 +33,7 @@
       "schoolName": "โรงเรียนโพธิสัมพันธิ์พิทยาคาร",
       "studyPlan": "วิทย์คอม",
       "period": "ม.4 - ม.6",
-      "img": "https://i.ytimg.com/vi/BKBUj0NfZn8/maxresdefault.jpg",
-      "logo": "/assets/imgs/PSP.png",
+      "img": "/assets/imgs/PSP.jpg",
       "facebookLink": "https://web.facebook.com/PhothisamphanSchool?locale=th_TH",
       "location": "https://maps.app.goo.gl/TrY6quSrVK57boUt7"
     }
@@ -46,49 +43,48 @@
     "faculty": "วิทยาศาสตร์ ศรีราชา",
     "major": "วิทยาการคอมพิวเตอร์",
     "period": "กำลังศึกษาอยู่",
-    "img": "https://www.src.ku.ac.th/en/tp/img/banner1.jpg",
-    "logo": "/assets/imgs/KU-SRC.png",
+    "img": "/assets/imgs/KU-SRC.jpg",
     "facebookLink": "https://web.facebook.com/KasetsartUniversity",
     "location": "https://maps.app.goo.gl/rtVuC3BGS47hGkJ2A"
   },
   "courses": [
     {
-      "id": "2",
+      "id": "1",
       "code": "01418112",
       "courseName": "Fundamental Programming Concepts",
       "grade": "A",
       "credit": 3
     },
     {
-      "id": "3",
+      "id": "2",
       "courseName": "Statistical Programming",
       "code": "01418131",
       "grade": "A",
       "credit": 3
     },
     {
-      "id": "4",
+      "id": "3",
       "code": "01418113",
       "courseName": "Computer Programming",
       "grade": "A",
       "credit": 3
     },
     {
-      "id": "5",
+      "id": "4",
       "code": "01417322",
       "courseName": "Basic Linear Algebra",
       "grade": "A",
       "credit": 3
     },
     {
-      "id": "6",
+      "id": "5",
       "courseName": "Computer Architecture",
       "code": "01418233",
       "grade": "A",
       "credit": 3
     },
     {
-      "id": "7",
+      "id": "6",
       "code": "01418211",
       "courseName": "Software Construction",
       "grade": "A",

@@ -4,7 +4,6 @@ export default interface SchoolModel {
     studyPlan: string;
     period: string;
     img: string;
-    logo: string;
     facebookLink: string;
     location: string;
 }
