@@ -1,6 +1,7 @@
 import { ReactElement, useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import AppContainer from "./components/containers/AppContainer";
+// import Hero from "./components/Hero";
 import Navbar from "./components/main/Navbar";
 import About from "./components/main/About";
 import Graduation from "./components/main/Graduation";
@@ -44,6 +45,7 @@ const App = (): ReactElement => {
     >
       <AppContainer>
         <ToastContainer stacked />
+        {/* <Hero/> */}
         <Navbar />
         <About />
         <Graduation />
