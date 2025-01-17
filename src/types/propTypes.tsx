@@ -43,12 +43,24 @@ export interface TitleProps extends TitleObject {}
 export interface LineProps<T extends HTMLDivElement = HTMLDivElement>
   extends Attributes<T> {}
 
-export interface ButtonProps<T extends HTMLButtonElement = HTMLButtonElement>
-  extends Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick"> {
+export interface ButtonProps<T extends HTMLButtonElement = HTMLButtonElement> {
+  attributes?: ButtonHTMLAttributes<T>;
+  text: string;
+}
+
+export interface DownloadButtonProps<
+  T extends HTMLButtonElement = HTMLButtonElement
+> extends ButtonProps<T> {
+  to: string;
+  icon?: JSX.Element;
+}
+
+export interface ContactButtonProps<
+  T extends HTMLButtonElement = HTMLButtonElement
+> extends Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick"> {
   attributes?: ButtonHTMLAttributes<T>;
   text: string;
   icon?: JSX.Element;
-  buttonType: "normal" | "contact";
 }
 
 export interface SkillProps extends Skill {}
@@ -105,14 +117,18 @@ export interface SelectFieldProps<
 
 export interface ModalFormProps {
   modal: Modal.Props;
-  id?: string;
-  course?: CourseModel;
-  closeModal(): void;
+  id: number;
+  course: CourseModel;
+  handleCloseModal(): void;
 }
 
-export interface FormProps extends Pick<ModalFormProps, "course" | "id"> {
-  mode: "add" | "edit";
-  closeModal?: () => void;
+export interface AddDataFormProps<T extends HTMLFormElement = HTMLFormElement> {
+  attributes?: FormHTMLAttributes<T>;
+}
+
+export interface EditDataFormProps<T extends HTMLFormElement = HTMLFormElement>
+  extends Omit<ModalFormProps, "modal"> {
+  attributes?: FormHTMLAttributes<T>;
 }
 
 export interface MobileMenuProps {

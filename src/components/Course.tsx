@@ -10,22 +10,22 @@ import CourseModel from "../types/models/course";
 import { CourseContextType } from "../types";
 import { CourseProps } from "../types/propTypes";
 import { modalStyles, toastOptions } from "../constants";
-import { getLocalhost } from "../utils";
+import { getApiUrl } from "../utils";
 
 const Course: FC<CourseProps> = ({
   attributes,
   id,
   courseName,
-  code,
+  courseCode,
   credit,
   grade,
 }): ReactElement => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const { handleFetch } = useContext(CourseContext) as CourseContextType;
 
-  const handleClick = (): void => {
-    setOpen(!open);
+  const handleOpen = (): void => {
+    setIsOpen(!isOpen);
   };
 
   const handleOpenModal = (): void => {
@@ -36,7 +36,7 @@ const Course: FC<CourseProps> = ({
     setModalIsOpen(false);
   };
 
-  const handleDelete = useCallback(async (id: string): Promise<void> => {
+  const handleDelete = useCallback(async (id: number): Promise<void> => {
     const toastId: Id = toast.info("กำลังลบข้อมูล", {
       ...toastOptions,
       isLoading: true,
@@ -44,11 +44,11 @@ const Course: FC<CourseProps> = ({
 
     try {
       const { status }: AxiosResponse<CourseModel> =
-        await axios.delete<CourseModel>(`${getLocalhost()}/courses/${id}`);
+        await axios.delete<CourseModel>(`${getApiUrl()}/courses/delete/${id}`);
 
       if (status === HttpStatusCode.Ok) {
         setTimeout(async (): Promise<void> => {
-          await handleFetch();
+          handleFetch();
           toast.update(toastId, {
             ...toastOptions,
             render: "ลบข้อมูลสำเร็จ",
@@ -79,38 +79,37 @@ const Course: FC<CourseProps> = ({
         modal={{
           isOpen: modalIsOpen,
           style: modalStyles,
-          onRequestClose: handleCloseModal,
         }}
         id={id}
         course={{
           id,
           courseName,
-          code,
+          courseCode,
           credit,
           grade,
         }}
-        closeModal={handleCloseModal}
+        handleCloseModal={handleCloseModal}
       />
 
       <div>
         <header
           className="w-full cursor-pointer text-lg translate-y-2 flex items-center justify-between"
-          onClick={handleClick}
+          onClick={handleOpen}
         >
           <p className="max-[450px]:text-base max-[360px]:text-base">{courseName}</p>
           <IoIosArrowUp
             className={`text-xl transition delay-100 ease-linear max-[450px]:text-base max-[360px]:text-base ${
-              open ? "rotate-0" : "rotate-180"
+              isOpen ? "rotate-0" : "rotate-180"
             }`}
           />
         </header>
         <div
           className={`transition-all ease-linear delay-100 ${
-            open ? " h-[80px] opacity-100" : "h-0 opacity-0 "
+            isOpen ? " h-[80px] opacity-100" : "h-0 opacity-0 "
           }`}
         >
           <Line attributes={{ className: "mt-8 mb-6 max-[450px]:mt-6 max-[450px]:mb-6 max-[360px]:mt-6 max-[360px]:mb-6" }} />
-          <p className="text-sm">รหัสวิชา: {code}</p>
+          <p className="text-sm">รหัสวิชา: {courseCode}</p>
           <p className="text-sm my-2">
             เกรด: <span className="font-bold">{grade}</span>
           </p>
@@ -118,7 +117,7 @@ const Course: FC<CourseProps> = ({
         </div>
         <div
           className={`flex items-center justify-end transition-all ease-linear delay-100 ${
-            open ? " h-[40px] opacity-100" : "h-0 opacity-0 "
+            isOpen ? " h-[40px] opacity-100" : "h-0 opacity-0 "
           } mt-8`}
         >
           <AiOutlineEdit

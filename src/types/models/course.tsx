@@ -1,6 +1,6 @@
 export default interface CourseModel {
-    id: string;
-    code: string;
+    id: number;
+    courseCode: string;
     courseName: string;
     grade: string;
     credit: number;

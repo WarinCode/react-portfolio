@@ -22,9 +22,9 @@ export interface UserContextType {
 }
 
 export interface CourseContextType {
-  courses: Courses;
-  setCourses: Dispatch<SetStateAction<Courses>>;
-  handleFetch(): Promise<void>;
+  courses: Courses | null;
+  setCourses: Dispatch<SetStateAction<Courses | null>>;
+  handleFetch(): void;
 }
 
 export interface TitleObject {

@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 import { toast, Bounce, ToastOptions } from "react-toastify";
 import Modal from "react-modal";
-import { ButtonProps } from "../types/propTypes";
+import { ContactButtonProps } from "../types/propTypes";
 import { NavItemData, Skill } from "../types";
 import { AiOutlineMail, AiOutlineInstagram } from "react-icons/ai";
 import { IoLogoGithub } from "react-icons/io5";
@@ -62,33 +62,29 @@ export const navItems: NavItemData[] = [
   },
 ];
 
-export const contactButtons: ButtonProps<HTMLButtonElement>[] = [
+export const contactButtons: ContactButtonProps<HTMLButtonElement>[] = [
   {
     text: "email",
     href: "mailto:warin.sai@ku.th",
     icon: <AiOutlineMail className="text-2xl" />,
-    buttonType: "contact",
   },
   {
     text: "instagram",
     href: "https://www.instagram.com/warin.dev/",
     icon: <AiOutlineInstagram className="text-2xl" />,
-    buttonType: "contact",
   },
   {
     text: "github",
     href: "https://github.com/WarinCode",
     icon: <IoLogoGithub className="text-2xl" />,
-    buttonType: "contact",
   },
   {
     text: "line",
     href: "",
-    onClick: (e: MouseEvent<HTMLAnchorElement>) => {
+    onClick: (e: MouseEvent<HTMLAnchorElement>): void => {
       toast.info("Line ID: varin471", toastOptions);
     },
     icon: <FaLine className="text-2xl" />,
-    buttonType: "contact",
   },
 ];
 
@@ -181,3 +177,5 @@ export const grades: string[] = [
 ];
 
 export const credits: number[] = [3, 2, 1];
+
+export const btnStyled: string = "w-56 h-14 bg-primary border-2 border-tertiary rounded-md text-tertiary p-4 delay-200 transition ease-linear hover:text-black hover:border-transparent hover:bg-secondary select-none shadow-md hover:shadow-tertiary hover:scale-95";

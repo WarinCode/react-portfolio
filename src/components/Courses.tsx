@@ -10,10 +10,20 @@ const Courses = (): ReactElement => {
 
   return (
     <div className="grid grid-cols-2 grid-flow-row place-items-center items-baseline gap-y-8 max-[450px]:grid-cols-1 max-[360px]:grid-cols-1">
-      {courses.map(
-        (course: CourseModel): ReactElement => (
-          <Course key={uuid()} {...course} attributes={{ className: "max-[450px]:w-full max-[360px]:w-full" }} />
+      {courses !== null ? (
+        courses.map(
+          (course: CourseModel): ReactElement => (
+            <Course
+              key={uuid()}
+              {...course}
+              attributes={{
+                className: "max-[450px]:w-full max-[360px]:w-full",
+              }}
+            />
+          )
         )
+      ) : (
+        <></>
       )}
     </div>
   );

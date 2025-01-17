@@ -1,7 +1,6 @@
 import { ReactElement, FC } from "react";
 import Modal from "react-modal";
-import { IoCloseOutline } from "react-icons/io5";
-import Form from "./Form";
+import EditDataForm from "./EditDataForm";
 import { ModalFormProps } from "../types/propTypes";
 
 Modal.setAppElement("#root");
@@ -10,22 +9,15 @@ const ModalForm: FC<ModalFormProps> = ({
   modal,
   id,
   course,
-  closeModal
+  handleCloseModal,
 }): ReactElement => {
+  const a = () => {
+    console.log(1)
+  }
+
   return (
     <Modal {...modal}>
-      <div className="relative">
-        <IoCloseOutline
-          className="text-3xl max-[450px]:text-xl max-[360px]:text-xl text-tertiary text-end cursor-pointer absolute top-0 right-0"
-          onClick={modal.onRequestClose}
-        />
-      </div>
-      <Form
-        mode={"edit"}
-        id={id}
-        course={course}
-        closeModal={closeModal}
-      />
+      <EditDataForm id={id} course={course} handleCloseModal={handleCloseModal} />
     </Modal>
   );
 };

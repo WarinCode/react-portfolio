@@ -1,7 +1,6 @@
-import { ReactElement, useState, useEffect } from "react";
+import { ReactElement } from "react";
 import { ToastContainer } from "react-toastify";
 import AppContainer from "./components/containers/AppContainer";
-// import Hero from "./components/Hero";
 import Navbar from "./components/main/Navbar";
 import About from "./components/main/About";
 import Graduation from "./components/main/Graduation";
@@ -13,20 +12,13 @@ import ScrollToTop from "./components/ScrollToTop";
 import Loading from "./components/Loading";
 import UserModel from "./types/models/user";
 import UserContext from "./components/contexts/UserContext";
-import { fetchData } from "./utils";
+import useFetch from "./hooks/useFetch";
+import { getApiUrl } from "./utils";
 
 const App = (): ReactElement => {
-  const [user, setUser] = useState<UserModel | null>(null);
+  const apiUrl: string = getApiUrl() + "/user";
   const controller: AbortController = new AbortController();
-
-  useEffect((): (() => void) => {
-    fetchData<UserModel | null>("/user", setUser, controller);
-
-    return (): void => {
-      setUser(null);
-      controller.abort();
-    };
-  }, []);
+  const [user, setUser] = useFetch<UserModel>(apiUrl, controller);
 
   if (user === null) {
     return (
@@ -45,7 +37,6 @@ const App = (): ReactElement => {
     >
       <AppContainer>
         <ToastContainer stacked />
-        {/* <Hero/> */}
         <Navbar />
         <About />
         <Graduation />

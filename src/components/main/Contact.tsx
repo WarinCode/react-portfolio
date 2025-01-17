@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import Container from "../containers/Container";
 import Line from "../Line";
 import Title from "../Title";
-import Button from "../Button";
+import ContactButton from "../ContactButton";
 import { ButtonProps } from "../../types/propTypes";
 import { contactButtons } from "../../constants";
 
@@ -13,13 +13,11 @@ const Contact = (): ReactElement => {
       <Line />
       <Title title="Contact" />
       <div className="mb-8">
-        <p className="font-k2d max-[360px]:mb-2">
-          ช่องทางการติดต่อทั้งหมดของเรา
-        </p>
+        <p className="font-k2d max-[360px]:mb-2">ช่องทางการติดต่อทั้งหมด</p>
       </div>
       <div className="flex flex-wrap items-center justify-between max-[450px]:flex-col max-[360px]:flex-col">
         {contactButtons.map((btn: ButtonProps<HTMLButtonElement>) => (
-          <Button
+          <ContactButton
             key={uuid()}
             {...btn}
             attributes={{

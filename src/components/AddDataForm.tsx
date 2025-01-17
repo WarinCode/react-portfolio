@@ -17,21 +17,16 @@ import Button from "./Button";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import CourseModel, { Courses } from "../types/models/course";
-import { FormProps } from "../types/propTypes";
+import { AddDataFormProps, FormProps } from "../types/propTypes";
 import { grades, credits, toastOptions } from "../constants";
-import { getLocalhost } from "../utils";
+import { getApiUrl } from "../utils";
 
-const Form: FC<FormProps> = ({
-  mode,
-  course,
-  id,
-  closeModal,
-}): ReactElement => {
-  const { courses, setCourses, handleFetch } = useContext(
+const AddDataForm: FC<AddDataFormProps> = ({ attributes }): ReactElement => {
+  const { setCourses, handleFetch } = useContext(
     CourseContext
   ) as CourseContextType;
   const courseName = useRef() as MutableRefObject<HTMLInputElement>;
-  const code = useRef() as MutableRefObject<HTMLInputElement>;
+  const courseCode = useRef() as MutableRefObject<HTMLInputElement>;
   const grade = useRef() as MutableRefObject<HTMLSelectElement>;
   const credit = useRef() as MutableRefObject<HTMLSelectElement>;
 
@@ -54,24 +49,14 @@ const Form: FC<FormProps> = ({
     }
   };
 
-  useEffect((): void => {
-    if (mode === "edit") {
-      courseName.current.focus();
-      setCurrentValue(courseName, course?.courseName);
-      setCurrentValue(code, course?.code);
-      setCurrentValue(grade, course?.grade);
-      setCurrentValue(credit, course?.credit);
-    }
-  }, []);
-
   const clear = (): void => {
     setCurrentValue(courseName, "");
-    setCurrentValue(code, "");
+    setCurrentValue(courseCode, "");
     setCurrentValue(grade, "A");
     setCurrentValue(credit, 3);
   };
 
-  const formValidation = useCallback((id?: string): void => {
+  const formValidation = useCallback((id?: number): void => {
     if (getCurrentValue(courseName).length === 0) {
       setCurrentValue(courseName, "");
       courseName.current.focus();
@@ -86,33 +71,36 @@ const Form: FC<FormProps> = ({
       }
     }
 
-    if (getCurrentValue(code).length < 8) {
-      setCurrentValue(code, "");
-      code.current.focus();
+    if (getCurrentValue(courseCode).length < 8) {
+      setCurrentValue(courseCode, "");
+      courseCode.current.focus();
       throw new Error("รหัสวิชาต้องมีความยาวเท่ากับ 8!");
     }
 
-    if (isNaN(parseInt(getCurrentValue(code)))) {
-      setCurrentValue(code, "");
-      code.current.focus();
+    if (isNaN(parseInt(getCurrentValue(courseCode)))) {
+      setCurrentValue(courseCode, "");
+      courseCode.current.focus();
       throw new Error("รหัสวิชาต้องเป็นตัวเลขเท่านั้น!");
     }
 
-    let temp: string = getCurrentValue(code);
+    let temp: string = getCurrentValue(courseCode);
     for (let j: number = 0; j < 8; j++) {
       if (isNaN(parseInt(temp[j]))) {
-        setCurrentValue(code, "");
-        code.current.focus();
+        setCurrentValue(courseCode, "");
+        courseCode.current.focus();
         throw new Error("รหัสวิชาต้องเป็นตัวเลขเท่านั้น!");
       }
     }
 
     let isError: boolean = false;
-    setCourses((prevCourses: Courses): Courses => {
-      if (id === undefined) {
+    setCourses((prevCourses: Courses | null): Courses | null => {
+      if (prevCourses === null) {
+        isError = true;
+        return prevCourses;
+      } else if (id === undefined) {
         isError = prevCourses.some(
           (course: CourseModel): boolean =>
-            course.code === getCurrentValue(code) ||
+            course.courseCode === getCurrentValue(courseCode) ||
             course.courseName === getCurrentValue(courseName)
         );
       } else {
@@ -121,7 +109,7 @@ const Form: FC<FormProps> = ({
         );
         isError = filterdCourses.some(
           (course: CourseModel) =>
-            course.code === getCurrentValue(code) ||
+            course.courseCode === getCurrentValue(courseCode) ||
             course.courseName === getCurrentValue(courseName)
         );
       }
@@ -131,17 +119,17 @@ const Form: FC<FormProps> = ({
 
     if (isError) {
       clear();
-      throw new Error("ไม่สามารถเพิ่มชื่อวิชาหรือรหัสวิชาที่ซ้ำกันได้!");
+      throw new Error("ไม่สามารถเพิ่มชื่อวิชาได้!");
     }
   }, []);
 
-  const getId = (): string => {
-    let id: string = "";
-    setCourses((prevCourses: Courses) => {
+  const getId = (): number => {
+    let id: number = 0;
+    setCourses((prevCourses: Courses | null) => {
       id =
-        prevCourses.length === 0
-          ? "1"
-          : String(parseInt(prevCourses[prevCourses.length - 1].id) + 1);
+        prevCourses?.length === 0 || prevCourses === null
+          ? 1
+          : prevCourses[prevCourses.length - 1].id + 1;
       return prevCourses;
     });
 
@@ -155,7 +143,7 @@ const Form: FC<FormProps> = ({
       const payload: CourseModel = {
         id: getId(),
         courseName: getCurrentValue(courseName),
-        code: getCurrentValue(code),
+        courseCode: getCurrentValue(courseCode),
         grade: getCurrentValue(grade),
         credit: parseInt(getCurrentValue(credit)),
       };
@@ -164,70 +152,17 @@ const Form: FC<FormProps> = ({
         formValidation();
 
         const { status }: AxiosResponse<CourseModel> =
-          await axios.post<CourseModel>(`${getLocalhost()}/courses`, payload);
+          await axios.post<CourseModel>(`${getApiUrl()}/courses/create`, payload);
 
         if (status === HttpStatusCode.Created) {
-          await handleFetch();
+          handleFetch();
           toast.success("เพิ่มรายวิชาสำเร็จ", toastOptions);
           clear();
         }
       } catch (e: any) {
         if (e instanceof AxiosError || e instanceof Error) {
           toast.error(e.message, toastOptions);
-        }
-      }
-    },
-    []
-  );
-
-  const handleEdit = useCallback(
-    async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-      e.preventDefault();
-
-      const toastId: Id = toast.info("กำลังแก้ไขข้อมูล", {
-        ...toastOptions,
-        isLoading: true,
-      });
-
-      const payload: CourseModel = {
-        id: id as string,
-        courseName: getCurrentValue(courseName),
-        code: getCurrentValue(code),
-        grade: getCurrentValue(grade),
-        credit: parseInt(getCurrentValue(credit)),
-      };
-
-      try {
-        formValidation(id);
-
-        const { status }: AxiosResponse<CourseModel> =
-          await axios.put<CourseModel>(
-            `${getLocalhost()}/courses/${id}`,
-            payload
-          );
-
-        if (status === HttpStatusCode.Ok) {
-          setTimeout(async (): Promise<void> => {
-            await handleFetch();
-            clear();
-            if (closeModal !== undefined) closeModal();
-
-            toast.update(toastId, {
-              ...toastOptions,
-              render: "แก้ไขข้อมูลสำเร็จ",
-              type: "success",
-              isLoading: false,
-            });
-          }, 2000);
-        }
-      } catch (e: any) {
-        if (e instanceof AxiosError || e instanceof Error) {
-          toast.update(toastId, {
-            ...toastOptions,
-            render: e.message,
-            type: "error",
-            isLoading: false,
-          });
+          clear();
         }
       }
     },
@@ -237,9 +172,10 @@ const Form: FC<FormProps> = ({
   return (
     <FormContainer
       attributes={{
+        ...attributes,
         className:
           "mt-8 grid grid-cols-2 grid-rows-3 place-items-center text-tertiary font-k2d gap-y-12 max-[450px]:flex max-[450px]:flex-col max-[360px]:flex max-[360px]:flex-col",
-        onSubmit: mode === "add" ? handleSubmit : handleEdit,
+        onSubmit: handleSubmit,
       }}
     >
       <InputField
@@ -255,12 +191,12 @@ const Form: FC<FormProps> = ({
       <InputField
         labelName="รหัสวิชา"
         attributes={{
-          id: "courseName",
+          id: "courseCode",
           type: "text",
           minLength: 1,
           maxLength: 8,
         }}
-        referent={code}
+        referent={courseCode}
       />
       <SelectField
         labelName="เกรด"
@@ -276,14 +212,14 @@ const Form: FC<FormProps> = ({
       />
       <Button
         attributes={{
-          className: "col-span-2 mt-4 w-[250px] max-[450px]:w-full max-[360px]:w-full",
+          className:
+            "col-span-2 mt-4 w-[250px] max-[450px]:w-full max-[360px]:w-full",
           type: "submit",
         }}
-        text={mode === "add" ? "บันทึก" : "แก้ไข"}
-        buttonType={"normal"}
+        text={"บันทึก"}
       />
     </FormContainer>
   );
 };
 
-export default Form;
+export default AddDataForm;

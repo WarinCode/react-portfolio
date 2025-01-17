@@ -1,13 +1,11 @@
 import { ReactElement, useContext } from "react";
-import uuid from "react-uuid";
 import Title from "../Title";
 import Container from "../containers/Container";
 import BackgroundLayer from "../BackgroundLayer";
-import Button from "../Button";
+import DownloadButton from "../DownloadButton";
 import UserContext from "../contexts/UserContext";
-import { ButtonProps } from "../../types/propTypes";
 import { UserContextType } from "../../types";
-import { contactButtons } from "../../constants";
+import { IoDocumentText } from "react-icons/io5";
 
 const About = (): ReactElement => {
   const { user } = useContext(UserContext) as UserContextType;
@@ -26,19 +24,16 @@ const About = (): ReactElement => {
             เวลาว่าง {user?.hobbies} เป้าหมายหลักในอนาคตต้องการเป็น Full Stack
             Developer
           </p>
-          <p className="my-2 font-k2d">ช่องทางการติดต่อหลัก: </p>
-          <div className="flex w-full items-center justify-start mt-8 max-[450px]:flex-col max-[360px]:flex-col">
-            {contactButtons.slice(1, 3).map(
-              (btn: ButtonProps<HTMLButtonElement>): ReactElement => (
-                <Button
-                  key={uuid()}
-                  {...btn}
-                  attributes={{
-                    className: "my-2 me-4 max-[450px]:w-full max-[450px]:mb-6 max-[360px]:w-full max-[360px]:mb-4",
-                  }}
-                />
-              )
-            )}
+          <div className="mt-8 max-[450px]:flex-col max-[360px]:flex-col">
+            <DownloadButton
+              text="ดาวโหลด์ CV"
+              to="/assets/cv/resume.pdf"
+              icon={<IoDocumentText className="text-2xl"/>}
+              attributes={{
+                className:
+                  "my-2 me-4 max-[450px]:w-full max-[450px]:mb-6 max-[360px]:w-full max-[360px]:mb-4",
+              }}
+            />
           </div>
         </div>
         <div className="relative w-1/2 max-[450px]:w-full max-[360px]:w-full">

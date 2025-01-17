@@ -20,9 +20,17 @@ export async function fetchData<T>(
   }
 }
 
+export function getClassName(className: string | undefined): string {
+  return typeof className === "string" ? className : "";
+}
+
 export function getLocalhost(customPort?: number) {
   const defaultPort: number = 3000;
   const port: number =
     typeof customPort === "number" ? customPort : defaultPort;
   return `http://localhost:${port}`;
+}
+
+export function getApiUrl(): string {
+  return "https://server-for-react-portfolio.onrender.com/api";
 }

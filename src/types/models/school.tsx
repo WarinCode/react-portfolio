@@ -1,5 +1,5 @@
 export default interface SchoolModel {
-    id: string;
+    id: number;
     schoolName: string;
     studyPlan: string;
     period: string;
