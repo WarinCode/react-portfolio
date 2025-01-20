@@ -1,5 +1,5 @@
 import { useState, useContext, useCallback, ReactElement, FC } from "react";
-import axios, { AxiosResponse, AxiosError, HttpStatusCode } from "axios";
+import axios, { AxiosResponse, AxiosError, HttpStatusCode, AxiosRequestConfig } from "axios";
 import { toast, Id } from "react-toastify";
 import { IoIosArrowUp } from "react-icons/io";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
@@ -10,7 +10,7 @@ import CourseModel from "../types/models/course";
 import { CourseContextType } from "../types";
 import { CourseProps } from "../types/propTypes";
 import { modalStyles, toastOptions } from "../constants";
-import { getApiUrl, getClassName } from "../utils";
+import { getApiUrl, getClassName, getAxiosConfig } from "../utils";
 
 const Course: FC<CourseProps> = ({
   attributes,
@@ -43,8 +43,9 @@ const Course: FC<CourseProps> = ({
     });
 
     try {
+      const axiosConfig: AxiosRequestConfig = getAxiosConfig();
       const { status }: AxiosResponse<CourseModel> =
-        await axios.delete<CourseModel>(`${getApiUrl()}/courses/delete/${id}`);
+        await axios.delete<CourseModel>(`${getApiUrl()}/courses/delete/${id}`, axiosConfig);
 
       if (status === HttpStatusCode.Ok) {
         setTimeout(async (): Promise<void> => {
@@ -98,15 +99,13 @@ const Course: FC<CourseProps> = ({
         >
           <p className="max-[450px]:text-base max-[360px]:text-base">{courseName}</p>
           <IoIosArrowUp
-            className={`text-xl transition delay-100 ease-linear max-[450px]:text-base max-[360px]:text-base ${
-              isOpen ? "rotate-0" : "rotate-180"
-            }`}
+            className={`text-xl transition delay-100 ease-linear max-[450px]:text-base max-[360px]:text-base ${isOpen ? "rotate-0" : "rotate-180"
+              }`}
           />
         </header>
         <div
-          className={`transition-all ease-linear delay-100 ${
-            isOpen ? " h-[80px] opacity-100" : "h-0 opacity-0 "
-          }`}
+          className={`transition-all ease-linear delay-100 ${isOpen ? " h-[80px] opacity-100" : "h-0 opacity-0 "
+            }`}
         >
           <Line attributes={{ className: "mt-8 mb-6 max-[450px]:mt-6 max-[450px]:mb-6 max-[360px]:mt-6 max-[360px]:mb-6" }} />
           <p className="text-sm">รหัสวิชา: {courseCode}</p>
@@ -116,9 +115,8 @@ const Course: FC<CourseProps> = ({
           <p className="text-sm">หน่วยกิต: {credit}</p>
         </div>
         <div
-          className={`flex items-center justify-end transition-all ease-linear delay-100 ${
-            isOpen ? " h-[40px] opacity-100" : "h-0 opacity-0 "
-          } mt-8`}
+          className={`flex items-center justify-end transition-all ease-linear delay-100 ${isOpen ? " h-[40px] opacity-100" : "h-0 opacity-0 "
+            } mt-8`}
         >
           <AiOutlineEdit
             className="text-2xl me-4 cursor-pointer"

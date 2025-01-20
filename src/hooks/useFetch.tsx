@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, Dispatch, SetStateAction } from "react";
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
-import useLocalStorage from "./useLocalStorage";
 import useLogin from "./useLogin";
+import { getAxiosConfig } from "../utils";
 
 export default function useFetch<T extends object | object[]>(
   url: string,
@@ -10,9 +10,7 @@ export default function useFetch<T extends object | object[]>(
   const [data, setData] = useState<T | null>(null);
 
   const fetchData = useCallback(async (): Promise<void> => {
-    const axiosConfig: AxiosRequestConfig = {
-      headers: { Authorization: useLocalStorage("token") },
-    };
+    const axiosConfig: AxiosRequestConfig = getAxiosConfig();
 
     try {
       const response: AxiosResponse<T> = await axios.get<T>(url, axiosConfig);

@@ -8,7 +8,7 @@ import {
   FormEvent,
   MutableRefObject,
 } from "react";
-import axios, { AxiosResponse, HttpStatusCode, AxiosError } from "axios";
+import axios, { AxiosResponse, HttpStatusCode, AxiosError, AxiosRequestConfig } from "axios";
 import { toast, Id } from "react-toastify";
 import FormContainer from "./containers/FormContainer";
 import CourseContext from "./contexts/CourseContext";
@@ -19,7 +19,7 @@ import SelectField from "./SelectField";
 import CourseModel, { Courses } from "../types/models/course";
 import { EditDataFormProps } from "../types/propTypes";
 import { grades, credits, toastOptions } from "../constants";
-import { getApiUrl } from "../utils";
+import { getApiUrl, getAxiosConfig } from "../utils";
 import { AiOutlineEdit, AiOutlineClose } from "react-icons/ai";
 
 const EditDataForm: FC<EditDataFormProps> = ({
@@ -156,10 +156,12 @@ const EditDataForm: FC<EditDataFormProps> = ({
       try {
         formValidation(id);
 
+        const axiosConfig: AxiosRequestConfig = getAxiosConfig();
         const { status }: AxiosResponse<CourseModel> =
           await axios.put<CourseModel>(
             `${getApiUrl()}/courses/update/${id}`,
-            payload
+            payload,
+            axiosConfig
           );
 
         if (status === HttpStatusCode.Ok) {

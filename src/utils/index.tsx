@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import axios, { AxiosResponse, AxiosError } from "axios";
+import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export async function fetchData<T>(
   path: string,
@@ -41,4 +42,12 @@ export const getDomainName = (): string => {
 
 export const getEnv = (key: keyof ImportMetaEnv): string => {
   return import.meta.env[key];
+}
+
+export const getAxiosConfig = (): AxiosRequestConfig => {
+  return {
+    headers: {
+      Authorization: useLocalStorage("token")
+    }
+  }
 }
