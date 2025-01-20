@@ -3,13 +3,14 @@ import uuid from "react-uuid";
 import Container from "../containers/Container";
 import Line from "../Line";
 import Title from "../Title";
-import Card from "../Card";
+import SchoolCard from "../SchoolCard";
+import UniversityCard from "../UniversityCard";
 import SchoolModel, { Schools } from "../../types/models/school";
 import UniversityModel from "../../types/models/university";
 import { getApiUrl } from "../../utils";
 import useFetch from "../../hooks/useFetch";
 
-const Graduation = (): ReactElement => {
+const Education = (): ReactElement => {
   const [schools, setSchools] = useFetch<Schools>(getApiUrl() + "/schools");
   const [university, setUniversity] = useFetch<UniversityModel>(
     getApiUrl() + "/university"
@@ -19,12 +20,12 @@ const Graduation = (): ReactElement => {
     <Container
       attributes={{
         className: "text-tertiary",
-        id: "graduation",
+        id: "education",
       }}
     >
       <Line />
       <div>
-        <Title title="Graduation" />
+        <Title title="Education" />
         <p className="font-k2d leading-8">
           โรงเรียนที่เรียนจบและสำเร็จการศึกษามาแล้วและมหาลัยที่กำลังศึกษาอยู่ ณ
           ปัจจุบัน
@@ -34,14 +35,14 @@ const Graduation = (): ReactElement => {
         {schools !== null ? (
           schools.map(
             (school: SchoolModel): ReactElement => (
-              <Card key={uuid()} cardType="school" data={school} />
+              <SchoolCard key={uuid()} data={school} />
             )
           )
         ) : (
           <></>
         )}
         {university !== null ? (
-          <Card cardType="university" data={university} />
+          <UniversityCard data={university} />
         ) : (
           <></>
         )}
@@ -50,4 +51,4 @@ const Graduation = (): ReactElement => {
   );
 };
 
-export default Graduation;
+export default Education;

@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import AppContainer from "./components/containers/AppContainer";
 import Navbar from "./components/main/Navbar";
 import About from "./components/main/About";
-import Graduation from "./components/main/Graduation";
+import Education from "./components/main/Education";
 import Skills from "./components/main/Skills";
 import AcademicResults from "./components/main/AcademicResults";
 import Contact from "./components/main/Contact";
@@ -17,8 +17,7 @@ import { getApiUrl } from "./utils";
 
 const App = (): ReactElement => {
   const apiUrl: string = getApiUrl() + "/user";
-  const controller: AbortController = new AbortController();
-  const [user, setUser] = useFetch<UserModel>(apiUrl, controller);
+  const [user, setUser] = useFetch<UserModel>(apiUrl);
 
   if (user === null) {
     return (
@@ -39,7 +38,7 @@ const App = (): ReactElement => {
         <ToastContainer stacked />
         <Navbar />
         <About />
-        <Graduation />
+        <Education />
         <Skills />
         <AcademicResults />
         <Contact />

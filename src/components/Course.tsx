@@ -10,7 +10,7 @@ import CourseModel from "../types/models/course";
 import { CourseContextType } from "../types";
 import { CourseProps } from "../types/propTypes";
 import { modalStyles, toastOptions } from "../constants";
-import { getApiUrl } from "../utils";
+import { getApiUrl, getClassName } from "../utils";
 
 const Course: FC<CourseProps> = ({
   attributes,
@@ -73,7 +73,7 @@ const Course: FC<CourseProps> = ({
   return (
     <div
       {...attributes}
-      className={`font-k2d text-tertiary w-3/4 bg-zinc-900 rounded-lg mb-8 p-6 shadow ${attributes?.className}`}
+      className={`font-k2d text-tertiary w-3/4 bg-zinc-900 rounded-lg mb-8 p-6 shadow ${getClassName(attributes?.className)}`}
     >
       <ModalForm
         modal={{

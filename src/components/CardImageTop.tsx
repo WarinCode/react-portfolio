@@ -1,5 +1,6 @@
 import { ReactElement, FC } from "react";
 import { CardImageTopProps } from "../types/propTypes";
+import { getClassName } from "../utils";
 
 const CardImageTop: FC<CardImageTopProps> = ({
   src,
@@ -9,7 +10,7 @@ const CardImageTop: FC<CardImageTopProps> = ({
   return (
     <div
       {...attributes}
-      className={`overflow-hidden rounded-md ${attributes?.className}`}
+      className={`overflow-hidden rounded-md ${getClassName(attributes?.className)}`}
     >
       <img
         src={src}

@@ -1,6 +1,7 @@
 import { ReactElement, FC } from "react";
 import InputWrapper from "./InputWrapper";
 import { InputFieldProps } from "../types/propTypes";
+import { getClassName } from "../utils";
 
 const InputField: FC<InputFieldProps> = ({
   labelName,
@@ -14,7 +15,7 @@ const InputField: FC<InputFieldProps> = ({
       </label>
       <input
         {...attributes}
-        className={`outline-none w-3/4 h-12 border-tertiary border-2 rounded bg-primary ps-2 transition delay-150 ease-linear focus:border-secondary ${attributes?.className} max-[450px]:w-full max-[360px]:w-full`}
+        className={`outline-none w-3/4 h-12 border-tertiary border-2 rounded bg-primary ps-2 transition delay-150 ease-linear focus:border-secondary ${getClassName(attributes?.className)} max-[450px]:w-full max-[360px]:w-full`}
         ref={referent}
         required
       />

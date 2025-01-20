@@ -45,8 +45,8 @@ export const navItems: NavItemData[] = [
     targetId: "#about",
   },
   {
-    text: "Graduation",
-    targetId: "#graduation",
+    text: "Education",
+    targetId: "#education",
   },
   {
     text: "Skills",

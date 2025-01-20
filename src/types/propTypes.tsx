@@ -68,10 +68,14 @@ export interface SkillProps extends Skill {}
 export interface BackgroundLayerProps<T extends HTMLDivElement = HTMLDivElement>
   extends Attributes<T> {}
 
-export interface CardProps<T extends HTMLDivElement = HTMLDivElement>
+export interface SchoolCardProps<T extends HTMLDivElement = HTMLDivElement>
   extends Attributes<T> {
-  cardType: "school" | "university";
-  data: SchoolModel | UniversityModel;
+  data: SchoolModel;
+}
+
+export interface UniversityCardProps<T extends HTMLDivElement = HTMLDivElement>
+  extends Attributes<T> {
+  data: UniversityModel;
 }
 
 export interface CardImageTopProps<T extends HTMLDivElement = HTMLDivElement>

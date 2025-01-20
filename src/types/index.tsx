@@ -30,3 +30,13 @@ export interface CourseContextType {
 export interface TitleObject {
   title: string;
 }
+
+export interface Token {
+  token: string;
+}
+
+export interface UserLogin {
+  userId: number;
+  username: string;
+  password: string;
+}

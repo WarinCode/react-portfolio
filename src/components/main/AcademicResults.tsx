@@ -11,8 +11,7 @@ import { getApiUrl } from "../../utils";
 
 const AcademicResults = (): ReactElement => {
   const apiUrl: string = getApiUrl() + "/courses";
-  const controller: AbortController = new AbortController();
-  const [courses, setCourses, refresh] = useFetch<CourseModel[]>(apiUrl, controller);
+  const [courses, setCourses, refresh] = useFetch<CourseModel[]>(apiUrl);
 
   const handleFetch = (): void => {
     refresh();
