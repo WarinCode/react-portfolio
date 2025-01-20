@@ -4,7 +4,7 @@ import Container from "../containers/Container";
 import Line from "../Line";
 import Title from "../Title";
 import ContactButton from "../ContactButton";
-import { ButtonProps } from "../../types/propTypes";
+import { ContactButtonProps } from "../../types/propTypes";
 import { contactButtons } from "../../constants";
 
 const Contact = (): ReactElement => {
@@ -16,7 +16,7 @@ const Contact = (): ReactElement => {
         <p className="font-k2d max-[360px]:mb-2">ช่องทางการติดต่อทั้งหมด</p>
       </div>
       <div className="flex flex-wrap items-center justify-between max-[450px]:flex-col max-[360px]:flex-col">
-        {contactButtons.map((btn: ButtonProps<HTMLButtonElement>) => (
+        {contactButtons.map((btn: ContactButtonProps<HTMLButtonElement>) => (
           <ContactButton
             key={uuid()}
             {...btn}
