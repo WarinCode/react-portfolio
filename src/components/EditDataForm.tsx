@@ -105,35 +105,36 @@ const EditDataForm: FC<EditDataFormProps> = ({
       }
     }
 
-    let isError: boolean = false;
-    setCourses((prevCourses: Courses | null): Courses | null => {
-      if (prevCourses === null) {
-        isError = true;
-        return prevCourses;
-      } else if (id === undefined) {
-        isError = prevCourses.some(
-          (course: CourseModel): boolean =>
-            course.courseCode === getCurrentValue(courseCode) ||
-            course.courseName === getCurrentValue(courseName)
-        );
-      } else {
-        const filterdCourses: Courses = prevCourses.filter(
-          (course: CourseModel): boolean => course.id !== id
-        );
-        isError = filterdCourses.some(
-          (course: CourseModel) =>
-            course.courseCode === getCurrentValue(courseCode) ||
-            course.courseName === getCurrentValue(courseName)
-        );
-      }
+    //! ต้องแก้บัคตรงส่วนนี้
+    // let isError: boolean = false;
+    // setCourses((prevCourses: Courses | null): Courses | null => {
+    //   if (prevCourses === null) {
+    //     isError = true;
+    //     return prevCourses;
+    //   } else if (id === undefined) {
+    //     isError = prevCourses.some(
+    //       (course: CourseModel): boolean =>
+    //         course.courseCode === getCurrentValue(courseCode) ||
+    //         course.courseName === getCurrentValue(courseName)
+    //     );
+    //   } else {
+    //     const filterdCourses: Courses = prevCourses.filter(
+    //       (course: CourseModel): boolean => course.id !== id
+    //     );
+    //     isError = filterdCourses.some(
+    //       (course: CourseModel) =>
+    //         course.courseCode === getCurrentValue(courseCode) ||
+    //         course.courseName === getCurrentValue(courseName)
+    //     );
+    //   }
 
-      return prevCourses;
-    });
+    //   return prevCourses;
+    // });
 
-    if (isError) {
-      clear();
-      throw new Error("ไม่สามารถเพิ่มชื่อวิชาได้!");
-    }
+    // if (isError) {
+    //   clear();
+    //   throw new Error("ไม่สามารถเพิ่มชื่อวิชาได้!");
+    // }
   }, []);
 
   const handleEdit = useCallback(
