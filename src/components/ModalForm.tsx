@@ -11,9 +11,6 @@ const ModalForm: FC<ModalFormProps> = ({
   course,
   handleCloseModal,
 }): ReactElement => {
-  const a = () => {
-    console.log(1)
-  }
 
   return (
     <Modal {...modal}>

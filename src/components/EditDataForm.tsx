@@ -13,13 +13,14 @@ import { toast, Id } from "react-toastify";
 import FormContainer from "./containers/FormContainer";
 import CourseContext from "./contexts/CourseContext";
 import { CourseContextType } from "../types";
-import Button from "./Button";
+import ActionButton from "./ActionButton";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import CourseModel, { Courses } from "../types/models/course";
 import { EditDataFormProps } from "../types/propTypes";
 import { grades, credits, toastOptions } from "../constants";
 import { getApiUrl } from "../utils";
+import { AiOutlineEdit, AiOutlineClose } from "react-icons/ai";
 
 const EditDataForm: FC<EditDataFormProps> = ({
   course,
@@ -229,20 +230,22 @@ const EditDataForm: FC<EditDataFormProps> = ({
         attributes={{ id: "credit" }}
         referent={credit}
       />
-      <Button
+      <ActionButton
         attributes={{
           className: "mt-4 w-[250px] max-[450px]:w-full max-[360px]:w-full",
           type: "submit",
         }}
         text={"แก้ไข"}
+        icon={<AiOutlineEdit className="text-2xl inline" />}
       />
-      <Button
+      <ActionButton
         attributes={{
           className: "mt-4 w-[250px] max-[450px]:w-full max-[360px]:w-full",
           type: "button",
           onClick: handleCloseModal,
         }}
         text={"ยกเลิก"}
+        icon={<AiOutlineClose className="text-2xl inline" />}
       />
     </FormContainer>
   );

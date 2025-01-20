@@ -40,3 +40,11 @@ export interface UserLogin {
   username: string;
   password: string;
 }
+
+export interface Icon {
+  icon: JSX.Element;
+}
+
+export interface CardData<T extends object> {
+  data: T;
+}

@@ -12,7 +12,7 @@ import Modal from "react-modal";
 import SchoolModel from "./models/school";
 import UniversityModel from "./models/university";
 import CourseModel from "./models/course";
-import { Attributes, NavItemData, Skill, TitleObject } from ".";
+import { Attributes, NavItemData, Skill, TitleObject, Icon, CardData } from ".";
 
 interface RootContainer<T extends HTMLElement = HTMLElement>
   extends Attributes<T> {
@@ -20,13 +20,13 @@ interface RootContainer<T extends HTMLElement = HTMLElement>
 }
 
 export interface AppContainerProps<T extends HTMLElement>
-  extends RootContainer<T> {}
+  extends RootContainer<T> { }
 
 export interface ContainerProps<T extends HTMLElement = HTMLElement>
-  extends RootContainer<T> {}
+  extends RootContainer<T> { }
 
 export interface CardContainerProps<T extends HTMLDivElement>
-  extends RootContainer<T> {}
+  extends RootContainer<T> { }
 
 export interface FormContainerProps<T extends HTMLFormElement = HTMLFormElement>
   extends Pick<RootContainer<T>, "children"> {
@@ -34,14 +34,14 @@ export interface FormContainerProps<T extends HTMLFormElement = HTMLFormElement>
 }
 
 export interface InputWrapperProps<T extends HTMLDivElement = HTMLDivElement>
-  extends RootContainer<T> {}
+  extends RootContainer<T> { }
 
-export interface NavLinkProps extends NavItemData {}
+export interface NavLinkProps extends NavItemData { }
 
-export interface TitleProps extends TitleObject {}
+export interface TitleProps extends TitleObject { }
 
 export interface LineProps<T extends HTMLDivElement = HTMLDivElement>
-  extends Attributes<T> {}
+  extends Attributes<T> { }
 
 export interface ButtonProps<T extends HTMLButtonElement = HTMLButtonElement> {
   attributes?: ButtonHTMLAttributes<T>;
@@ -50,61 +50,53 @@ export interface ButtonProps<T extends HTMLButtonElement = HTMLButtonElement> {
 
 export interface DownloadButtonProps<
   T extends HTMLButtonElement = HTMLButtonElement
-> extends ButtonProps<T> {
+> extends ButtonProps<T>, Icon {
   to: string;
-  icon?: JSX.Element;
 }
 
 export interface ContactButtonProps<
   T extends HTMLButtonElement = HTMLButtonElement
-> extends Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick"> {
-  attributes?: ButtonHTMLAttributes<T>;
-  text: string;
-  icon?: JSX.Element;
-}
+> extends Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick">, ButtonProps<T>, Icon { }
 
-export interface SkillProps extends Skill {}
+export interface ActionButtonProps<T extends HTMLButtonElement = HTMLButtonElement> extends ButtonProps<T>, Icon {}
+
+export interface SkillProps extends Skill { }
 
 export interface BackgroundLayerProps<T extends HTMLDivElement = HTMLDivElement>
-  extends Attributes<T> {}
+  extends Attributes<T> { }
 
 export interface SchoolCardProps<T extends HTMLDivElement = HTMLDivElement>
-  extends Attributes<T> {
-  data: SchoolModel;
-}
+  extends Attributes<T>, CardData<SchoolModel> { }
 
 export interface UniversityCardProps<T extends HTMLDivElement = HTMLDivElement>
-  extends Attributes<T> {
-  data: UniversityModel;
-}
+  extends Attributes<T>, CardData<UniversityModel> { }
 
 export interface CardImageTopProps<T extends HTMLDivElement = HTMLDivElement>
   extends Pick<ImgHTMLAttributes<HTMLImageElement>, "src" | "alt">,
-    Attributes<T> {}
+  Attributes<T> { }
 
 export interface CardTitleProps<
   T extends HTMLHeadingElement = HTMLHeadingElement
 > extends TitleObject,
-    Attributes<T> {}
+  Attributes<T> { }
 
-export interface CardHeaderProps extends RootContainer<HTMLElement> {}
+export interface CardHeaderProps extends RootContainer<HTMLElement> { }
 
 export interface CardBodyProps<T extends HTMLDivElement>
-  extends RootContainer<T> {}
+  extends RootContainer<T> { }
 
 export interface CardDetailsProps<T extends HTMLDivElement>
-  extends RootContainer<T> {}
+  extends RootContainer<T> { }
 
 export interface CardLinkProps<
   T extends HTMLAnchorElement = HTMLAnchorElement
-> {
+> extends Icon {
   attributes?: AnchorHTMLAttributes<T>;
-  icon: JSX.Element;
 }
 
 export interface CourseProps<T extends HTMLElement = HTMLDivElement>
   extends CourseModel,
-    Attributes<T> {}
+  Attributes<T> { }
 
 export interface InputFieldProps<T extends HTMLElement = HTMLInputElement> {
   attributes?: InputHTMLAttributes<T>;
