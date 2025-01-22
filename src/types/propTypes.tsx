@@ -13,6 +13,7 @@ import SchoolModel from "./models/school";
 import UniversityModel from "./models/university";
 import CourseModel from "./models/course";
 import { Attributes, NavItemData, Skill, TitleObject, Icon, CardData } from ".";
+import { GPAXType } from "./models/gpa";
 
 interface RootContainer<T extends HTMLElement = HTMLElement>
   extends Attributes<T> {
@@ -130,3 +131,5 @@ export interface EditDataFormProps<T extends HTMLFormElement = HTMLFormElement>
 export interface MobileMenuProps {
   isOpen: boolean;
 }
+
+export interface GPAXProps<T extends HTMLSpanElement = HTMLSpanElement> extends Attributes<T>, GPAXType {}

@@ -26,7 +26,7 @@ export const getClassName = (className: string | undefined): string => {
 }
 
 export const getLocalhost = (customPort?: number): string => {
-  const defaultPort: number = 3000;
+  const defaultPort: number = 3452;
   const port: number =
     typeof customPort === "number" ? customPort : defaultPort;
   return `http://localhost:${port}`;
@@ -47,7 +47,8 @@ export const getEnv = (key: keyof ImportMetaEnv): string => {
 export const getAxiosConfig = (): AxiosRequestConfig => {
   return {
     headers: {
-      Authorization: useLocalStorage("token")
+      Authorization: useLocalStorage("token"),
+      "Content-Type": "application/json"
     }
   }
 }

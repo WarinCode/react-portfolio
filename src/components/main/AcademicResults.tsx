@@ -5,13 +5,16 @@ import Line from "../Line";
 import AddDataForm from "../AddDataForm";
 import Courses from "../Courses";
 import CourseContext from "../contexts/CourseContext";
+import GPAX from "../GPAX";
 import CourseModel from "../../types/models/course";
 import useFetch from "../../hooks/useFetch";
 import { getApiUrl } from "../../utils";
+import { GPAXType } from "../../types/models/gpa";
 
 const AcademicResults = (): ReactElement => {
-  const apiUrl: string = getApiUrl() + "/courses";
-  const [courses, setCourses, refresh] = useFetch<CourseModel[]>(apiUrl);
+  const apiUrl: string = getApiUrl();
+  const [courses, setCourses, refresh] = useFetch<CourseModel[]>(apiUrl + "/courses");
+  const [gpaxObject, setGpaxObject] = useFetch<GPAXType>(apiUrl + "/gpax");
 
   const handleFetch = (): void => {
     refresh();
@@ -41,7 +44,10 @@ const AcademicResults = (): ReactElement => {
               ยังไม่มีรายวิชาที่นำมาแสดงในตอนนี้โปรดเพิ่มรายวิชาก่อน
             </p>
           ) : (
-            <p className="font-k2d mb-12">แสดงผลการเรียนทั้งหมด</p>
+            <div className="flex items-center justify-between mb-12">
+              <p className="font-k2d">ผลการเรียนทั้งหมด</p>
+              <GPAX gpax={gpaxObject?.gpax === undefined ? 0 : gpaxObject.gpax} />
+            </div>
           )}
           <Courses />
         </div>

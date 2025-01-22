@@ -6,7 +6,6 @@ import { getAxiosConfig } from "../utils";
 export default function useFetch<T extends object | object[]>(
   url: string,
 ): [T | null, Dispatch<SetStateAction<T | null>>, () => void] {
-  const [loginStatus] = useLogin();
   const [data, setData] = useState<T | null>(null);
 
   const fetchData = useCallback(async (): Promise<void> => {
@@ -24,14 +23,15 @@ export default function useFetch<T extends object | object[]>(
   }, []);
 
   useEffect((): (() => void) => {
-    if(loginStatus){
-      fetchData();
-    }
+    (async (): Promise<void> => {
+      await useLogin();
+      await fetchData();
+    })();
 
     return (): void => {
       setData(null);
     };
-  }, [loginStatus]);
+  }, []);
 
   return [data, setData, fetchData];
 }

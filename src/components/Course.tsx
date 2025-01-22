@@ -97,10 +97,11 @@ const Course: FC<CourseProps> = ({
           className="w-full cursor-pointer text-lg translate-y-2 flex items-center justify-between"
           onClick={handleOpen}
         >
-          <p className="max-[450px]:text-base max-[360px]:text-base">{courseName}</p>
+          <p className="max-[450px]:text-base max-[360px]:text-base" onClick={handleOpen}>{courseName}</p>
           <IoIosArrowUp
             className={`text-xl transition delay-100 ease-linear max-[450px]:text-base max-[360px]:text-base ${isOpen ? "rotate-0" : "rotate-180"
               }`}
+            onClick={handleOpen}
           />
         </header>
         <div
