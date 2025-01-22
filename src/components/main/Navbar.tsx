@@ -16,7 +16,7 @@ const Navbar = (): ReactElement => {
 
   return (
     <nav
-      className={`flex flex-col w-full sticky -top-0 h-20 z-50 px-28 py-5 py-auto backdrop-blur-lg max-[450px]:justify-between max-[450px]:px-12 max-[360px]:justify-between max-[360px]:px-12 transition-[height] ease-linear delay-100 max-[450px]:py-6 max-[360px]:py-6 ${isOpen ? "max-[450px]:h-72 max-[360px]:h-64" : "h-20"
+      className={`flex flex-col w-full sticky -top-1 h-20 z-50 px-28 py-5 py-auto backdrop-blur-lg max-[450px]:justify-between max-[450px]:px-12 max-[360px]:justify-between max-[360px]:px-12 transition-[height] ease-linear delay-100 max-[450px]:py-6 max-[360px]:py-6 ${isOpen ? "max-[450px]:h-72 max-[360px]:h-64" : "h-20"
         }`}
     >
       <div className="flex items-center justify-between max-[450px]:-translate-y-1">
