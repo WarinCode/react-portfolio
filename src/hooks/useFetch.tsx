@@ -3,6 +3,8 @@ import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 import useLogin from "./useLogin";
 import { getAxiosConfig } from "../utils";
 
+useLogin();
+
 export default function useFetch<T extends object | object[]>(
   url: string,
 ): [T | null, Dispatch<SetStateAction<T | null>>, () => void] {
@@ -23,10 +25,7 @@ export default function useFetch<T extends object | object[]>(
   }, []);
 
   useEffect((): (() => void) => {
-    (async (): Promise<void> => {
-      await useLogin();
-      await fetchData();
-    })();
+    setTimeout(fetchData, 2000);
 
     return (): void => {
       setData(null);
