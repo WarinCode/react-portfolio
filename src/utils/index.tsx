@@ -32,16 +32,24 @@ export const getLocalhost = (customPort?: number): string => {
   return `http://localhost:${port}`;
 }
 
+export const getEnv = (key: keyof ImportMetaEnv): string => {
+  return import.meta.env[key];
+}
+
 export const getApiUrl = (): string => {
+  if(getEnv("MODE") === "development"){
+    return getLocalhost() + "/api";
+  }
+
   return "https://server-for-react-portfolio.onrender.com/api";
 }
 
 export const getDomainName = (): string => {
-  return "https://server-for-react-portfolio.onrender.com";
-}
+  if(getEnv("MODE") === "development"){
+    return getLocalhost();
+  }
 
-export const getEnv = (key: keyof ImportMetaEnv): string => {
-  return import.meta.env[key];
+  return "https://server-for-react-portfolio.onrender.com";
 }
 
 export const getAxiosConfig = (): AxiosRequestConfig => {

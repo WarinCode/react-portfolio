@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, Dispatch, SetStateAction } from "react";
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 import useLogin from "./useLogin";
+import useLocalStorage from "./useLocalStorage";
 import { getAxiosConfig } from "../utils";
 
 useLogin();
@@ -25,7 +26,11 @@ export default function useFetch<T extends object | object[]>(
   }, []);
 
   useEffect((): (() => void) => {
-    setTimeout(fetchData, 2000);
+    if(useLocalStorage("token") === null){
+      setTimeout(fetchData, 6000);
+    } else {
+      fetchData();
+    }
 
     return (): void => {
       setData(null);
