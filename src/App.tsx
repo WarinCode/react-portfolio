@@ -13,13 +13,17 @@ import Loading from "./components/Loading";
 import UserModel from "./types/models/user";
 import UserContext from "./components/contexts/UserContext";
 import useFetch from "./hooks/useFetch";
+import useAuth from "./hooks/useAuth";
 import { getApiUrl } from "./utils";
+import { BearerToken } from "./constants";
 
 const App = (): ReactElement => {
+  const { token, isError } = useAuth();
+  BearerToken.data = token;
   const apiUrl: string = getApiUrl() + "/user";
   const [user, setUser] = useFetch<UserModel>(apiUrl);
 
-  if (user === null) {
+  if (user === null || isError) {
     return (
       <AppContainer>
         <Loading />

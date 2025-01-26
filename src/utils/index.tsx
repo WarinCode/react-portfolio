@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { BearerToken } from "../constants";
 
 export async function fetchData<T>(
   path: string,
@@ -55,7 +55,7 @@ export const getDomainName = (): string => {
 export const getAxiosConfig = (): AxiosRequestConfig => {
   return {
     headers: {
-      Authorization: useLocalStorage("token"),
+      Authorization: BearerToken.data,
       "Content-Type": "application/json"
     }
   }

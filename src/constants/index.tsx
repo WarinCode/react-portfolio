@@ -179,3 +179,7 @@ export const grades: string[] = [
 export const credits: number[] = [3, 2, 1];
 
 export const btnStyled: string = "w-56 h-14 bg-primary border-2 border-tertiary rounded-md text-tertiary p-4 delay-200 transition ease-linear hover:text-black hover:border-transparent hover:bg-secondary select-none shadow-md hover:shadow-tertiary hover:scale-95";
+
+export class BearerToken {
+  public static data: string = "";
+}

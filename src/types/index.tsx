@@ -48,3 +48,10 @@ export interface Icon {
 export interface CardData<T extends object> {
   data: T;
 }
+
+export interface UseAuthData {
+  isError: boolean;
+  setIsError: Dispatch<SetStateAction<boolean>>;
+  token: string;
+  setToken: Dispatch<SetStateAction<string>>;
+}
