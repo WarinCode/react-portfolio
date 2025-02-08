@@ -13,13 +13,15 @@ import Loading from "./components/Loading";
 import UserModel from "./types/models/user";
 import UserContext from "./components/contexts/UserContext";
 import useFetch from "./hooks/useFetch";
+import useLoading from "./hooks/useLoading";
 import { getApiUrl } from "./utils";
 
 const App = (): ReactElement => {
   const apiUrl: string = getApiUrl() + "/user";
+  const { isLoading } = useLoading(2);
   const [user, setUser] = useFetch<UserModel>(apiUrl);
 
-  if (user === null) {
+  if (user === null || isLoading) {
     return (
       <AppContainer>
         <Loading />

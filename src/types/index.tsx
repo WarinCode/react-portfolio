@@ -55,3 +55,8 @@ export interface UseAuthData {
   token: string;
   setToken: Dispatch<SetStateAction<string>>;
 }
+
+export interface UseLoading {
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+}
