@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import axios, { AxiosResponse, AxiosError, HttpStatusCode, AxiosRequestConfig } from "axios";
+import axios, { AxiosResponse, AxiosError, HttpStatusCode } from "axios";
 import { Token, UserLogin, UseAuthData } from "../types";
-import { getApiUrl, getDomainName, getEnv, getAxiosConfig } from "../utils";
+import { getApiUrl, getDomainName, getEnv } from "../utils";
 
 export default function useAuth(): UseAuthData {
   const [isError, setIsError] = useState<boolean>(false);
   const [token, setToken] = useState<string>("");
 
   const preRequest = async (): Promise<number> => {
-    const axiosConfig: AxiosRequestConfig = getAxiosConfig();
 
     try {
-      const { status }: AxiosResponse = await axios.get(getApiUrl() + "/user", axiosConfig);
+      const { status }: AxiosResponse = await axios.get(getApiUrl() + "/user");
       return status;
     } catch (err: any) {
       if (err instanceof AxiosError) {

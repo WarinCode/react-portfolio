@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, Dispatch, SetStateAction } from "react";
-import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
-import { getAxiosConfig } from "../utils";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { BearerToken } from "../constants";
 
 export default function useFetch<T extends object | object[]>(
@@ -9,10 +8,9 @@ export default function useFetch<T extends object | object[]>(
   const [data, setData] = useState<T | null>(null);
 
   const fetchData = useCallback(async (): Promise<void> => {
-    const axiosConfig: AxiosRequestConfig = getAxiosConfig();
 
     try {
-      const response: AxiosResponse<T> = await axios.get<T>(url, axiosConfig);
+      const response: AxiosResponse<T> = await axios.get<T>(url);
       setData(response.data);
     } catch (err: any) {
       if (err instanceof AxiosError) {

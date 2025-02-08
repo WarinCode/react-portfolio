@@ -7,7 +7,7 @@ import {
   FormEvent,
   MutableRefObject,
 } from "react";
-import axios, { AxiosResponse, HttpStatusCode, AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosResponse, HttpStatusCode, AxiosError } from "axios";
 import { toast } from "react-toastify";
 import FormContainer from "./containers/FormContainer";
 import CourseContext from "./contexts/CourseContext";
@@ -18,7 +18,7 @@ import SelectField from "./SelectField";
 import CourseModel, { Courses } from "../types/models/course";
 import { AddDataFormProps } from "../types/propTypes";
 import { grades, credits, toastOptions } from "../constants";
-import { getApiUrl, getAxiosConfig } from "../utils";
+import { getApiUrl } from "../utils";
 
 const AddDataForm: FC<AddDataFormProps> = ({ attributes }): ReactElement => {
   const { setCourses, handleFetch } = useContext(
@@ -150,9 +150,8 @@ const AddDataForm: FC<AddDataFormProps> = ({ attributes }): ReactElement => {
       try {
         formValidation();
 
-        const axiosConfig: AxiosRequestConfig = getAxiosConfig();
         const { status }: AxiosResponse<CourseModel> =
-          await axios.post<CourseModel>(`${getApiUrl()}/courses/create`, payload, axiosConfig);
+          await axios.post<CourseModel>(`${getApiUrl()}/courses/create`, payload);
 
         if (status === HttpStatusCode.Created) {
           handleFetch();

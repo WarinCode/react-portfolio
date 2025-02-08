@@ -16,10 +16,10 @@ import { CourseContextType } from "../types";
 import ActionButton from "./ActionButton";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
-import CourseModel, { Courses } from "../types/models/course";
+import CourseModel from "../types/models/course";
 import { EditDataFormProps } from "../types/propTypes";
 import { grades, credits, toastOptions } from "../constants";
-import { getApiUrl, getAxiosConfig } from "../utils";
+import { getApiUrl } from "../utils";
 import { AiOutlineEdit, AiOutlineClose } from "react-icons/ai";
 
 const EditDataForm: FC<EditDataFormProps> = ({
@@ -157,12 +157,10 @@ const EditDataForm: FC<EditDataFormProps> = ({
       try {
         formValidation(id);
 
-        const axiosConfig: AxiosRequestConfig = getAxiosConfig();
         const { status }: AxiosResponse<CourseModel> =
           await axios.put<CourseModel>(
             `${getApiUrl()}/courses/update/${id}`,
-            payload,
-            axiosConfig
+            payload
           );
 
         if (status === HttpStatusCode.Ok) {

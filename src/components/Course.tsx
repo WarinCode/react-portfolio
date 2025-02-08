@@ -10,7 +10,7 @@ import CourseModel from "../types/models/course";
 import { CourseContextType } from "../types";
 import { CourseProps } from "../types/propTypes";
 import { modalStyles, toastOptions } from "../constants";
-import { getApiUrl, getClassName, getAxiosConfig } from "../utils";
+import { getApiUrl, getClassName } from "../utils";
 
 const Course: FC<CourseProps> = ({
   attributes,
@@ -43,9 +43,8 @@ const Course: FC<CourseProps> = ({
     });
 
     try {
-      const axiosConfig: AxiosRequestConfig = getAxiosConfig();
       const { status }: AxiosResponse<CourseModel> =
-        await axios.delete<CourseModel>(`${getApiUrl()}/courses/delete/${id}`, axiosConfig);
+        await axios.delete<CourseModel>(`${getApiUrl()}/courses/delete/${id}`);
 
       if (status === HttpStatusCode.Ok) {
         setTimeout(async (): Promise<void> => {

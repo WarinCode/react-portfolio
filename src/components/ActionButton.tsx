@@ -14,8 +14,7 @@ const ActionButton: FC<ActionButtonProps> = ({
             {...attributes}
             className={`${btnStyled} flex items-center justify-center ${getClassName(attributes?.className)}`}
         >
-            <span className=""
-            >
+            <span>
                 {icon}
                 <span className="capitalize ms-2">{text}</span>
             </span>
