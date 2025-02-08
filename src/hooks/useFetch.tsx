@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, Dispatch, SetStateAction } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { BearerToken } from "../constants";
 
 export default function useFetch<T extends object | object[]>(
   url: string,
@@ -21,14 +20,12 @@ export default function useFetch<T extends object | object[]>(
   }, []);
 
   useEffect((): (() => void) => {
-    if (BearerToken.data) {
-      fetchData();
-    }
+    fetchData();
 
     return (): void => {
       setData(null);
     };
-  }, [BearerToken.data]);
+  }, []);
 
   return [data, setData, fetchData];
 }
